@@ -1,6 +1,6 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.1.3
+## Version  2.1.5
 ```Swift
 import ARKit
 import AVFoundation
@@ -476,6 +476,10 @@ extension simd_float4x4 : ContiguousBytes {
 }
 
 public var passioIDDic: [String : [String : String]]
+
+infix operator .+ : DefaultPrecedence
+
+infix operator ./ : DefaultPrecedence
 
 
 

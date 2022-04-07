@@ -1,5 +1,5 @@
-# Passio Remodel-AI iOS SDK V2.1.3. Beta Release Notes
+# Passio Remodel-AI iOS SDK V2.1.5. Release Notes
 
-Version 2.1.3 which is still in Beta is not recommended for production. APIs are subject to change from version to version.
+Version 2.1.5  new models 
 
 
