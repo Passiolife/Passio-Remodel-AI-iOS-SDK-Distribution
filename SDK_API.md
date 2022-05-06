@@ -1,6 +1,6 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.1.5
+## Version  2.2.0
 ```Swift
 import ARKit
 import AVFoundation
@@ -69,6 +69,67 @@ public protocol CustomDetectionDelegate : AnyObject {
 public typealias FileLocalURL = URL
 
 public typealias FileName = String
+
+public enum IconSize : String {
+
+    case px90
+
+    case px180
+
+    case px360
+
+    /// Creates a new instance with the specified raw value.
+    ///
+    /// If there is no value of the type that corresponds with the specified raw
+    /// value, this initializer returns `nil`. For example:
+    ///
+    ///     enum PaperSize: String {
+    ///         case A4, A5, Letter, Legal
+    ///     }
+    ///
+    ///     print(PaperSize(rawValue: "Legal"))
+    ///     // Prints "Optional("PaperSize.Legal")"
+    ///
+    ///     print(PaperSize(rawValue: "Tabloid"))
+    ///     // Prints "nil"
+    ///
+    /// - Parameter rawValue: The raw value to use for the new instance.
+    public init?(rawValue: String)
+
+    /// The raw type that can be used to represent all values of the conforming
+    /// type.
+    ///
+    /// Every distinct value of the conforming type has a corresponding unique
+    /// value of the `RawValue` type, but there may be values of the `RawValue`
+    /// type that don't have a corresponding value of the conforming type.
+    public typealias RawValue = String
+
+    /// The corresponding value of the raw type.
+    ///
+    /// A new instance initialized with `rawValue` will be equivalent to this
+    /// instance. For example:
+    ///
+    ///     enum PaperSize: String {
+    ///         case A4, A5, Letter, Legal
+    ///     }
+    ///
+    ///     let selectedSize = PaperSize.Letter
+    ///     print(selectedSize.rawValue)
+    ///     // Prints "Letter"
+    ///
+    ///     print(selectedSize == PaperSize(rawValue: selectedSize.rawValue)!)
+    ///     // Prints "true"
+    public var rawValue: String { get }
+}
+
+extension IconSize : Equatable {
+}
+
+extension IconSize : Hashable {
+}
+
+extension IconSize : RawRepresentable {
+}
 
 public enum ModelForDetection : String, CaseIterable {
 
@@ -327,8 +388,6 @@ public class PassioRemodelAI {
 
     public func stopCustomDetection()
 
-    /// use getPreviewLayer if you don't plan to rotate the PreviewLayer.
-    /// - Returns: AVCaptureVideoPreviewLayer
     public func getPreviewLayer() -> AVCaptureVideoPreviewLayer?
 
     /// Don't call this function if you need to use the Passio layer again. Only call this function to set the PassioSDK Preview layer to nil
@@ -339,9 +398,27 @@ public class PassioRemodelAI {
     /// - Parameter preview: The preview layer bounding box
     public func transformCGRectForm(boundingBox: CGRect, toRect: CGRect) -> CGRect
 
+    /// Lookup for an icon for a PassioID. You will receive an icon and a bool, The boolean is true if the icons is food icon or false if it's a placeholder icon. If you get false you can use the asycronous funcion to "fetchIconFor" the icons from the web.
+    /// - Parameters:
+    ///   - passioID: PassioIC
+    ///   - size: 90, 180 or 360 px
+    ///   - entityType: PassioEntityType to return the right placeholder.
+    /// - Returns: UIImage and a bool, The boolean is true if the icons is food icon or false if it's a placeholder icon. If you get false you can use the asycronous funcion to "fetchIconFor" the icons from
+    public func lookupIconFor(passioID: PassioRemodelAISDK.PassioID, size: PassioRemodelAISDK.IconSize = IconSize.px90, activeModelType: PassioRemodelAISDK.ModelForDetection) -> (UIImage, Bool)
+
+    /// Fetch icons from the web.
+    /// - Parameters:
+    ///   - passioID: PassioIC
+    ///   - size: 90, 180 or 360 px
+    ///   - entityType: PassioEntityType to return the right placeholder.
+    ///   - completion: Optional Icon.
+    public func fetchIconFor(passioID: PassioRemodelAISDK.PassioID, size: PassioRemodelAISDK.IconSize = IconSize.px90, completion: @escaping (UIImage?) -> Void)
+
     /// Lookup an icon by its name
     /// - Parameter imageName: the name of the image.
-    public func lookupImageBy(imageName: String, activeModelType: PassioRemodelAISDK.ModelForDetection) -> UIImage?
+    public func defaultIconFor(activeModelType: PassioRemodelAISDK.ModelForDetection) -> UIImage
+
+    public func detectCustomPassioIDIn(image: UIImage, modelName: String, completion: @escaping ([PassioRemodelAISDK.CustomCandidate]?, [PassioRemodelAISDK.CustomClassificationCandidate]?) -> Void)
 }
 
 extension PassioRemodelAI : PassioRemodelAISDK.PassioStatusDelegate {
@@ -462,7 +539,7 @@ public protocol PassioStatusDelegate : AnyObject {
     func downloadingError(message: String)
 }
 
-public var passioIDDic: [String : [String : String]]
+public var passioIDDic: [String : [String : String]] { get }
 
 extension simd_float4x4 : ContiguousBytes {
 
@@ -475,7 +552,12 @@ extension simd_float4x4 : ContiguousBytes {
     public func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
 }
 
-public var passioIDDic: [String : [String : String]]
+extension UIImageView {
+
+    public func loadPassioIconBy(passioID: PassioRemodelAISDK.PassioID, activeModelType: PassioRemodelAISDK.ModelForDetection, size: PassioRemodelAISDK.IconSize = .px90, completion: @escaping (PassioRemodelAISDK.PassioID, UIImage) -> Void)
+}
+
+public let passioIDDic: [String : [String : String]] { get }
 
 infix operator .+ : DefaultPrecedence
 
