@@ -1,4 +1,9 @@
-# Passio Remodel-AI iOS SDK V2.2.3 Release Notes
+# Passio Remodel-AI iOS SDK V2.2.5 Release Notes
+
+## Version 2.2.5
+
+Updated Models
+
 ## Version 2.2.3
 
 Updated Models
