@@ -1,6 +1,6 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.2.5
+## Version  2.2.9
 ```Swift
 import ARKit
 import AVFoundation
