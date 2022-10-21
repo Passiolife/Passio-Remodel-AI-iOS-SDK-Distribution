@@ -1,11 +1,10 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.2.9
+## Version  2.2.11
 ```Swift
 import ARKit
 import AVFoundation
 import Accelerate
-import Combine
 import CommonCrypto
 import CoreML
 import CoreMedia
@@ -225,6 +224,9 @@ public struct PassioConfiguration : Equatable {
     /// If you have chosen to remove the files from the SDK and provide the SDK different URLs for this files please use this variable.
     public var filesLocalURLs: [PassioRemodelAISDK.FileLocalURL]?
 
+    /// Only use provided models. Don't use models previously installed.
+    public var forceInstallLocalURLs: Bool
+
     /// If you set this option to true, the SDK will download the models relevant for this version from Passio's bucket.
     public var sdkDownloadsModels: Bool
 
@@ -249,6 +251,13 @@ public struct PassioConfiguration : Equatable {
 
 /// PassioID (typealias String) is and idetifier used throughout the SDK.
 public typealias PassioID = String
+
+public struct PassioIDDic {
+
+    public func getLabel(passioID: PassioRemodelAISDK.PassioID, languageCode: String = "en") -> String?
+
+    public init()
+}
 
 /// PassioMode will report the mode the SDK is currently in.
 public enum PassioMode {
@@ -537,8 +546,6 @@ public protocol PassioStatusDelegate : AnyObject {
     func downloadingError(message: String)
 }
 
-public var passioIDDic: [String : [String : String]] { get }
-
 extension simd_float4x4 : ContiguousBytes {
 
     /// Calls the given closure with the contents of underlying storage.
@@ -552,16 +559,12 @@ extension simd_float4x4 : ContiguousBytes {
 
 extension UIImageView {
 
-    public func loadPassioIconBy(passioID: PassioRemodelAISDK.PassioID, activeModelType: PassioRemodelAISDK.ModelForDetection, size: PassioRemodelAISDK.IconSize = .px90, completion: @escaping (PassioRemodelAISDK.PassioID, UIImage) -> Void)
+    @MainActor public func loadPassioIconBy(passioID: PassioRemodelAISDK.PassioID, activeModelType: PassioRemodelAISDK.ModelForDetection, size: PassioRemodelAISDK.IconSize = .px90, completion: @escaping (PassioRemodelAISDK.PassioID, UIImage) -> Void)
 }
-
-public let passioIDDic: [String : [String : String]] { get }
 
 infix operator .+ : DefaultPrecedence
 
 infix operator ./ : DefaultPrecedence
-
-
 
 ```
 <sup>Copyright 2022 Passio Inc</sup>
