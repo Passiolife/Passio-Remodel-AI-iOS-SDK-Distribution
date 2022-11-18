@@ -1,5 +1,26 @@
 # Passio Remodel-AI iOS SDK Release Notes
 
+## V2.2.13
+Updated Models
+
+### Additional API 
+```swift
+public struct PassioMetadataService {
+
+    public var passioMetadata: PassioNutritionAISDK.PassioMetadata? { get }
+
+    public var getModelNames: [String]? { get }
+
+    public var getlabelIcons: [PassioNutritionAISDK.PassioID : PassioNutritionAISDK.PassioID]? { get }
+
+    public func getPassioIDs(byModelName: String) -> [PassioNutritionAISDK.PassioID]?
+
+    public func getLabel(passioID: PassioNutritionAISDK.PassioID, languageCode: String = "en") -> String?
+
+    public init()
+}
+```
+
 ## Version 2.2.11
 Updated Models
 

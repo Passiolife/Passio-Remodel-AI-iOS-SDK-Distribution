@@ -1,6 +1,6 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.2.11
+## Version  2.2.13
 ```Swift
 import ARKit
 import AVFoundation
@@ -18,7 +18,30 @@ import UIKit
 import VideoToolbox
 import Vision
 import _Concurrency
+import _StringProcessing
 import simd
+
+public struct ArchitectureStructure : Codable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws
+}
 
 /// The ClassificationCandidate protocol returns the classification candidate result delegate.
 public protocol ClassificationCandidate {
@@ -63,6 +86,28 @@ public protocol CustomDetectionDelegate : AnyObject {
     ///   - hnnCandidates: HNN candidates
     ///   - image: Image used for detection
     func customDetectionResult(customCandidates: [PassioRemodelAISDK.CustomCandidate]?, hnnCandidates: [PassioRemodelAISDK.CustomClassificationCandidate]?, classCandidates: [PassioRemodelAISDK.CustomClassificationCandidate]?, image: UIImage?)
+}
+
+public struct EnsembleArchitecture : Codable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws
 }
 
 public typealias FileLocalURL = URL
@@ -128,6 +173,28 @@ extension IconSize : Hashable {
 }
 
 extension IconSize : RawRepresentable {
+}
+
+public struct LabelMetaData : Codable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws
 }
 
 public enum ModelForDetection : String, CaseIterable {
@@ -252,7 +319,37 @@ public struct PassioConfiguration : Equatable {
 /// PassioID (typealias String) is and idetifier used throughout the SDK.
 public typealias PassioID = String
 
-public struct PassioIDDic {
+public struct PassioMetadata : Codable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws
+}
+
+public struct PassioMetadataService {
+
+    public var passioMetadata: PassioRemodelAISDK.PassioMetadata? { get }
+
+    public var getModelNames: [String]? { get }
+
+    public var getlabelIcons: [PassioRemodelAISDK.PassioID : PassioRemodelAISDK.PassioID]? { get }
+
+    public func getPassioIDs(byModelName: String) -> [PassioRemodelAISDK.PassioID]?
 
     public func getLabel(passioID: PassioRemodelAISDK.PassioID, languageCode: String = "en") -> String?
 
@@ -315,6 +412,8 @@ extension PassioMode : Hashable {
 
 /// Passio SDK - Copyright © 2022 Passio Inc. All rights reserved.
 public class PassioRemodelAI {
+
+    public var version: String { get }
 
     /// Shared Instance
     public class var shared: PassioRemodelAISDK.PassioRemodelAI { get }
@@ -546,6 +645,28 @@ public protocol PassioStatusDelegate : AnyObject {
     func downloadingError(message: String)
 }
 
+public struct SynonymLang : Codable {
+
+    /// Encodes this value into the given encoder.
+    ///
+    /// If the value fails to encode anything, `encoder` will encode an empty
+    /// keyed container in its place.
+    ///
+    /// This function throws an error if any values are invalid for the given
+    /// encoder's format.
+    ///
+    /// - Parameter encoder: The encoder to write data to.
+    public func encode(to encoder: Encoder) throws
+
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws
+}
+
 extension simd_float4x4 : ContiguousBytes {
 
     /// Calls the given closure with the contents of underlying storage.
@@ -565,6 +686,8 @@ extension UIImageView {
 infix operator .+ : DefaultPrecedence
 
 infix operator ./ : DefaultPrecedence
+
+
 
 ```
 <sup>Copyright 2022 Passio Inc</sup>
