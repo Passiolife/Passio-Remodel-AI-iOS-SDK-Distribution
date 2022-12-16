@@ -1,6 +1,6 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.2.13
+## Version  2.2.15
 ```Swift
 import ARKit
 import AVFoundation
@@ -22,6 +22,16 @@ import _StringProcessing
 import simd
 
 public struct ArchitectureStructure : Codable {
+
+    public let modelName: String?
+
+    public let modelId: String?
+
+    public let datasetId: String?
+
+    public let trainingRunId: String?
+
+    public let filename: PassioRemodelAISDK.FileName?
 
     /// Encodes this value into the given encoder.
     ///
@@ -89,6 +99,10 @@ public protocol CustomDetectionDelegate : AnyObject {
 }
 
 public struct EnsembleArchitecture : Codable {
+
+    public let name: String
+
+    public let structure: [PassioRemodelAISDK.ArchitectureStructure]
 
     /// Encodes this value into the given encoder.
     ///
@@ -176,6 +190,18 @@ extension IconSize : RawRepresentable {
 }
 
 public struct LabelMetaData : Codable {
+
+    public let displayName: String?
+
+    public let synonyms: [String : [PassioRemodelAISDK.SynonymLang]]?
+
+    public let models: [String]?
+
+    public let labelId: String
+
+    public let description: String?
+
+    public var modelName: String? { get }
 
     /// Encodes this value into the given encoder.
     ///
@@ -291,9 +317,6 @@ public struct PassioConfiguration : Equatable {
     /// If you have chosen to remove the files from the SDK and provide the SDK different URLs for this files please use this variable.
     public var filesLocalURLs: [PassioRemodelAISDK.FileLocalURL]?
 
-    /// Only use provided models. Don't use models previously installed.
-    public var forceInstallLocalURLs: Bool
-
     /// If you set this option to true, the SDK will download the models relevant for this version from Passio's bucket.
     public var sdkDownloadsModels: Bool
 
@@ -320,6 +343,16 @@ public struct PassioConfiguration : Equatable {
 public typealias PassioID = String
 
 public struct PassioMetadata : Codable {
+
+    public let projectId: String
+
+    public let ensembleId: String?
+
+    public let ensembleVersion: Int?
+
+    public let architecture: PassioRemodelAISDK.EnsembleArchitecture?
+
+    public var labelMetadata: [PassioRemodelAISDK.PassioID : PassioRemodelAISDK.LabelMetaData]? { get }
 
     /// Encodes this value into the given encoder.
     ///
@@ -353,7 +386,7 @@ public struct PassioMetadataService {
 
     public func getLabel(passioID: PassioRemodelAISDK.PassioID, languageCode: String = "en") -> String?
 
-    public init()
+    public init(metatadataURL: URL? = nil)
 }
 
 /// PassioMode will report the mode the SDK is currently in.
@@ -646,6 +679,8 @@ public protocol PassioStatusDelegate : AnyObject {
 }
 
 public struct SynonymLang : Codable {
+
+    public let synonym: String?
 
     /// Encodes this value into the given encoder.
     ///
