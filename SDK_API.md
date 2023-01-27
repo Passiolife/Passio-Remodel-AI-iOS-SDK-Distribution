@@ -1,8 +1,7 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.2.15
+## Version  2.2.17
 ```Swift
-import ARKit
 import AVFoundation
 import Accelerate
 import CommonCrypto
@@ -443,7 +442,6 @@ extension PassioMode : Equatable {
 extension PassioMode : Hashable {
 }
 
-/// Passio SDK - Copyright © 2022 Passio Inc. All rights reserved.
 public class PassioRemodelAI {
 
     public var version: String { get }
@@ -723,6 +721,5 @@ infix operator .+ : DefaultPrecedence
 infix operator ./ : DefaultPrecedence
 
 
-
 ```
-<sup>Copyright 2022 Passio Inc</sup>
+<sup>Copyright 2023 Passio Inc</sup>

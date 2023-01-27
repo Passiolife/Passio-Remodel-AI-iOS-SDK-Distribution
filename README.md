@@ -258,4 +258,4 @@ extension VideoViewController: PassioStatusDelegate {
 
 }
 ```
-<sup>Copyright 2022 Passio Inc</sup>
+<sup>Copyright 2023 Passio Inc</sup>
