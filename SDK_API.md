@@ -1,6 +1,6 @@
 # Passio PassioRemodelAISDK 
 
-## Version  2.2.17
+## Version  2.2.19
 ```Swift
 import AVFoundation
 import Accelerate
