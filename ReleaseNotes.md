@@ -1,5 +1,8 @@
 # Passio Remodel-AI iOS SDK Release Notes
 
+## V2.2.21
+Updated Models
+
 ## V2.2.19
 Updated Models
 
