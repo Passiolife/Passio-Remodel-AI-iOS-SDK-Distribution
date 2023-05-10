@@ -1,5 +1,7 @@
 # Passio Remodel-AI iOS SDK
 
+## Now available as Swift package at: https://github.com/Passiolife/Passio-Remodel-AI-iOS-SDK-Distribution
+
 ## Overview
 
 Welcome to Passio Remodel-AI iOS SDK!
@@ -17,10 +19,7 @@ By default the SDK does not record/store any photos or videos. Instead, as the e
 
 ## BEFORE YOU CONTINUE:
 
-1. To use the SDK please make sure you receive your SDK license key from Passio. The SDK WILL NOT WORK without a valid SDK key.
-
-3. You will have to download the latest releases from the link below. The command "git clone" **WILL NOT** download the PassioRemodelAISDK.xcframework. <https://github.com/Passiolife/Passio-Remodel-AI-iOS-SDK-Distribution/releases>. 
-Download the ```RemodelAISDK``` and copy the ```PassioRemodelAISDK.xcframework``` to your project. Make sure you have followed the directions in the README files.
+1. Replace the SDK Key in the PassioQuickStartViewController.swift file with the key you obtained by signing up at https://www.passio.ai/
 
 ## Minimum Requirements
 
@@ -43,19 +42,17 @@ In order to use the PassioSDK your app needs to meet the following minimal requi
 
 ***
 
-## Adding Passio SDK into your project
+## Add the PassioRemodelAISDK swift package to your project
 
-### Add the XCframework to your project
-
-* Drag and drop the "RemodelAISDK.xcframework" into your project. Make sure to select "Copy items if needed".
-  
-  ![drag and drop the framework](./READMEIMAGES/1AddXCFramework.png)
-
-
-### Change Framework to "Embed & Sign"
-* In project "General" -> "Frameworks, Libraries and Embedded Content" Change to "Embed & Sign"
-
- ![drag and drop the framework](./READMEIMAGES/2EmbedAndSign.png)
+1. Open your Xcode project.
+2. Go to File > Swift Packages > Add Package Dependency.
+3. In the "Add Package Dependency" dialog box, paste the URL: https://github.com/Passiolife/Passio-Remodel-AI-iOS-SDK-Distribution
+4. Click "Next". Xcode will validate the package and its dependencies.
+5. In the next dialog box, you'll be asked to specify the version or branch you want to use. You can choose main for the latest version or specify a specific version or branch.
+6. After you've made your selection, click "Next".
+7. You'll then be prompted to select the targets in your project that should include the package. Check the boxes for the targets you want to include.
+8. Click "Finish" to add the package to your project.
+9. Xcode will download and add the PassioRemodelAISDK to your project. You can now import and start using the PassioRemodelAISDK.
 ### Edit your Info.plist
 
 * If opening from Xcode, right click and select 'open as source code'
