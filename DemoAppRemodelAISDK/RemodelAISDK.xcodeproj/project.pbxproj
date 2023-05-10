@@ -13,6 +13,7 @@
 		9E0EFCF129A9080A00E62EA1 /* VideoCameraPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0EFCED29A9080A00E62EA1 /* VideoCameraPhotosViewController.swift */; };
 		9E4092432A0C3B82008F120B /* PassioSDKKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4092422A0C3B82008F120B /* PassioSDKKey.swift */; };
 		9E655E4A24A5174D00B21355 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E655E4124A5174D00B21355 /* AppDelegate.swift */; };
+		9E9E76BF2A0C41520058E1D4 /* PassioRemodelAISDK in Frameworks */ = {isa = PBXBuildFile; productRef = 9E9E76BE2A0C41520058E1D4 /* PassioRemodelAISDK */; };
 		9E9EBEB924A5299A004645EB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9EBEB724A5299A004645EB /* Launch Screen.storyboard */; };
 		9E9EBEBB24A52CBB004645EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9EBEBA24A52CBA004645EB /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E9E76BF2A0C41520058E1D4 /* PassioRemodelAISDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +140,9 @@
 			dependencies = (
 			);
 			name = RemodelAISDK;
+			packageProductDependencies = (
+				9E9E76BE2A0C41520058E1D4 /* PassioRemodelAISDK */,
+			);
 			productName = AppModule;
 			productReference = 9E4038AE23D7C3BE000E3DFC /* SDKApp.app */;
 			productType = "com.apple.product-type.application";
@@ -166,8 +171,9 @@
 		9E4038A623D7C3BE000E3DFC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Passio Inc";
 				TargetAttributes = {
 					9E4038AD23D7C3BE000E3DFC = {
@@ -189,6 +195,9 @@
 				de,
 			);
 			mainGroup = 9E4038A523D7C3BE000E3DFC;
+			packageReferences = (
+				9E9E76BD2A0C41520058E1D4 /* XCRemoteSwiftPackageReference "Passio-Remodel-AI-iOS-SDK-Distribution" */,
+			);
 			productRefGroup = 9E4038AF23D7C3BE000E3DFC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -506,6 +515,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9E9E76BD2A0C41520058E1D4 /* XCRemoteSwiftPackageReference "Passio-Remodel-AI-iOS-SDK-Distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Passiolife/Passio-Remodel-AI-iOS-SDK-Distribution";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9E9E76BE2A0C41520058E1D4 /* PassioRemodelAISDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9E9E76BD2A0C41520058E1D4 /* XCRemoteSwiftPackageReference "Passio-Remodel-AI-iOS-SDK-Distribution" */;
+			productName = PassioRemodelAISDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9E4038A623D7C3BE000E3DFC /* Project object */;
 }

@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "passio-remodel-ai-ios-sdk-distribution",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Passiolife/Passio-Remodel-AI-iOS-SDK-Distribution",
+      "state" : {
+        "branch" : "main",
+        "revision" : "288e2546ef87bbcf2832433f5c47b34563a9ba48"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -1,5 +1,8 @@
 # Passio Remodel-AI iOS SDK Release Notes
 
+## V2.3.1
+Now available as Swift package at: https://github.com/Passiolife/Passio-Remodel-AI-iOS-SDK-Distribution
+
 ## V2.2.23
 Updated Models
 
