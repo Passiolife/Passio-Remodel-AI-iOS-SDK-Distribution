@@ -43,6 +43,7 @@ In order to use the PassioSDK your app needs to meet the following minimal requi
 ***
 
 ## Add the PassioRemodelAISDK swift package to your project
+### Please make sure that you are running MacOS Ventra or higher with the Xcode 14.3 or higher.
 
 1. Open your Xcode project.
 2. Go to File > Swift Packages > Add Package Dependency.
