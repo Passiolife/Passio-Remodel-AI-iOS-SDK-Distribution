@@ -64,7 +64,7 @@ class VideoCameraPhotosViewController: UIViewController {
         allButtons.forEach {
             $0.roundMyCornerWith(radius: 12)
         }
-        let passioConfig = PassioConfiguration(key: passioSDKKey)
+        let passioConfig = PassioConfiguration()
 
         passioSDK.configure(passioConfiguration: passioConfig) { status in
             print( "SDK status = \(status)")
